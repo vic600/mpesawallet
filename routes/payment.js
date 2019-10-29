@@ -4,7 +4,7 @@ const request = require('request')
 const ts = require('time-stamp');
 const options = {
     noColor: true
-  };
+};
 module.exports = (router) => {
     function gettoken(cb) {
         const Token = String;
@@ -37,8 +37,8 @@ module.exports = (router) => {
                     var rt2 = tk.replace('"', "");
                     const Token = "Bearer " + rt2.trim();
                     cb(Token)
-                   
-                    
+
+
                 }
 
             })
@@ -89,7 +89,7 @@ module.exports = (router) => {
                                 PartyA: PartyA,
                                 PartyB: PartyB,
                                 PhoneNumber: PartyA,
-                                CallBackURL: "http://e508e47c.ngrok.io/payment/mpesa",
+                                CallBackURL: "http://104.248.194.156/payment/mpesa",
                                 AccountReference: Reference,
                                 TransactionDesc: description
                             }
@@ -129,58 +129,58 @@ module.exports = (router) => {
     //  }
     // })
     router.post('/stkquery', (req, res) => {
-            gettoken(function (tk) {
-                if (!req.body.check) {
-                    res.json({ success: false, message: 'provide a valid CheckoutRequestID' })
-                } else {
-                    var Shortcode = 174379;
-                    var Bearer = tk;
-                    var Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
-                    var Time_Stamp = ts('YYYYMMDDHHMMSS')
-                    var plainstring = Shortcode + Passkey + Time_Stamp;
-                    var Cred = new Buffer.from(plainstring).toString("base64")   // Base64.encodeToString(plainstring.getBytes("ISO-8859-1"),Base64.DEFAULT);
-                    var Credetials = Cred.replace("\\s", "");
-                    var url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query" //"https://api.safaricom.co.ke/mpesa/stkpushquery/v1/query"
-                    request(
-                        {
-                            method: 'POST',
-                            url: url,
-                            headers: {
-                                "Authorization": Bearer.trim()
-                            },
-                            json: {
-                                "BusinessShortCode": Shortcode,
-                                "Password": Credetials,
-                                "Timestamp": Time_Stamp,
-                                "CheckoutRequestID": req.body.check
-                            }
+        gettoken(function (tk) {
+            if (!req.body.check) {
+                res.json({ success: false, message: 'provide a valid CheckoutRequestID' })
+            } else {
+                var Shortcode = 174379;
+                var Bearer = tk;
+                var Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+                var Time_Stamp = ts('YYYYMMDDHHMMSS')
+                var plainstring = Shortcode + Passkey + Time_Stamp;
+                var Cred = new Buffer.from(plainstring).toString("base64")   // Base64.encodeToString(plainstring.getBytes("ISO-8859-1"),Base64.DEFAULT);
+                var Credetials = Cred.replace("\\s", "");
+                var url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query" //"https://api.safaricom.co.ke/mpesa/stkpushquery/v1/query"
+                request(
+                    {
+                        method: 'POST',
+                        url: url,
+                        headers: {
+                            "Authorization": Bearer.trim()
                         },
-                        function (error, response, body) {
-                            if (error) {
-                                res.json(error)
-                            } else {
-                                res.json(body).status(200)
-                            }
-    
+                        json: {
+                            "BusinessShortCode": Shortcode,
+                            "Password": Credetials,
+                            "Timestamp": Time_Stamp,
+                            "CheckoutRequestID": req.body.check
                         }
-                    )
-                }
-    
-    
-    
-            })
-        
+                    },
+                    function (error, response, body) {
+                        if (error) {
+                            res.json(error)
+                        } else {
+                            res.json(body).status(200)
+                        }
+
+                    }
+                )
+            }
+
+
+
+        })
+
     })
-    router.post('/mpesa',(req,res)=>{
+    router.post('/mpesa', (req, res) => {
         let message = {
             "ResponseCode": "00000000",
             "ResponseDesc": "success"
-          };
-      
-        console.log(prettyjson.render(req.body,options));
-      res.json({success:true,message:message})
+        };
+
+        console.log(prettyjson.render(req.body, options));
+        res.json({ success: true, message: message })
     })
-    
-      
+
+
     return router
 }   
