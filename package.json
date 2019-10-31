@@ -2,9 +2,9 @@
   "name": "rcgardenspay",
   "version": "1.0.0",
   "description": "wallet management",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "index.js"
+    "start": "app.js"
   },
   "repository": {
     "type": "git",

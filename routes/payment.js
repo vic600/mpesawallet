@@ -89,7 +89,7 @@ module.exports = (router) => {
                                 PartyA: PartyA,
                                 PartyB: PartyB,
                                 PhoneNumber: PartyA,
-                                CallBackURL: "http://104.248.194.156/payment/mpesa",
+                                CallBackURL: "https://104.248.194.156:3000/payment/mpesa",
                                 AccountReference: Reference,
                                 TransactionDesc: description
                             }
