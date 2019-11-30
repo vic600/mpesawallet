@@ -220,6 +220,61 @@ module.exports = (router) => {
 
         })
     })
+    app.post('/c2b', (req, res) => {
+        gettoken((tk) => {
+            if (!req.body.phone) {
+                res.json({ success: false, message: 'valid phone number must be provided' })
+            } else {
+
+                if (!req.body.amount) {
+                    res.json({ success: false, message: 'valid amount  must be provided' })
+                } else {
+                    var Shortcode = 600777;
+                    var PartyB = 174379;
+                    var Reference = "28";
+                    var description = "RCGARDENS";
+                    // var Bearer = now_token;
+                    var Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+                    var Time_Stamp = ts('YYYYMMDDHHMMSS')
+                    this.Timestamp = Time_Stamp;
+                    this.Leo = ts('YYYYMMDD')
+                    var plainstring = Shortcode + Passkey + Time_Stamp;
+                    var Cred = new Buffer.from(plainstring).toString("base64")   // Base64.encodeToString(plainstring.getBytes("ISO-8859-1"),Base64.DEFAULT);
+                    //console.log('cred ' + Cred);
+                    var Credetials = Cred.replace("\\s", "");
+                    var url = "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate"
+                    request(
+                        {
+                            method: 'POST',
+                            url: url,
+                            headers: {
+                                "Authorization":  Bearer.trim()
+                            },
+                            json: {
+                                //Fill in the request parameters with valid values
+                                "ShortCode": Shortcode,
+                                "CommandID": "CustomerPayBillOnline",
+                                "Amount": req.body.amount,
+                                "Msisdn": req.body.phone,
+                                "BillRefNumber": "test"
+                            }
+                        },
+                        function (error, response, body) {
+                            // TODO: Use the body object to extract the response
+                            if (error) {
+                                console.log(error);
+
+                            }
+                            res.json(body).status(200);
+                        }
+                    )
+
+                }
+            }
+        })
+
+
+    })
     router.post('/mpesa', (req, res) => {
         // let message = {
         //     "ResponseCode": "00000000",
