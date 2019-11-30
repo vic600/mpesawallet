@@ -176,8 +176,8 @@ module.exports = (router) => {
             if (!req.body.check) {
                 res.json({ success: false, message: 'provide a valid Trasaction id' })
             } else {
-                var Shortcode = 174379;
-                var initiator = 'testapi113'
+                var Shortcode = 600437;
+                var initiator = 'testapi'
                 var Bearer = tk;
                 var Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
                 var Time_Stamp = ts('YYYYMMDDHHMMSS')
@@ -194,7 +194,7 @@ module.exports = (router) => {
                             "Authorization": Bearer.trim()
                         },
                         json: {
-                            "Initiator": Shortcode,
+                            "Initiator": initiator,
                             "SecurityCredential": Credetials,
                             "CommandID": "TransactionStatusQuery",
                             "TransactionID": req.body.check,
