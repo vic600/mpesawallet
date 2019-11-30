@@ -182,7 +182,7 @@ module.exports = (router) => {
                 var Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
                 var Time_Stamp = ts('YYYYMMDDHHMMSS')
                 var plainstring = Shortcode + Passkey + Time_Stamp;
-                var Cred = new Buffer(plainstring).toString("base64")   // Base64.encodeToString(plainstring.getBytes("ISO-8859-1"),Base64.DEFAULT);
+                var Cred = new Buffer.from(plainstring).toString("base64")   // Base64.encodeToString(plainstring.getBytes("ISO-8859-1"),Base64.DEFAULT);
                 var Credetials = Cred.replace("\\s", "");
                 var url = "https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query"  // "https://api.safaricom.co.ke/mpesa/stkpushquery/v1/query"
 
