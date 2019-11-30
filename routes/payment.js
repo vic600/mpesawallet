@@ -199,7 +199,7 @@ module.exports = (router) => {
                             "CommandID": "TransactionStatusQuery",
                             "TransactionID": req.body.check,
                             "PartyA": Shortcode,
-                            "IdentifierType": "4",
+                            "IdentifierType": "11",
                             "ResultURL": "http://178.128.194.44:3000/payment/status",
                             "QueueTimeOutURL": "http://178.128.194.44:3000/payment/timeout",
                             "Remarks": "confirm ",
