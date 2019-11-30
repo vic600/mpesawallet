@@ -171,6 +171,54 @@ module.exports = (router) => {
         })
 
     })
+    router.post('/pstatus', (req, res) => {
+        gettoken(function (tk) {
+            if (!req.body.check) {
+                res.json({ success: false, message: 'provide a valid Trasaction id' })
+            } else {
+                var Shortcode = 895407;
+                var Bearer = tk;
+                var Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
+                var Time_Stamp = ts('YYYYMMDDHHMMSS')
+                var plainstring = Shortcode + Passkey + Time_Stamp;
+                var Cred = new Buffer(plainstring).toString("base64")   // Base64.encodeToString(plainstring.getBytes("ISO-8859-1"),Base64.DEFAULT);
+                var Credetials = Cred.replace("\\s", "");
+                var url = "https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query"  // "https://api.safaricom.co.ke/mpesa/stkpushquery/v1/query"
+
+                request(
+                    {
+                        method: 'POST',
+                        url: url,
+                        headers: {
+                            "Authorization": Bearer.trim()
+                        },
+                        json: {
+                            "Initiator": Shortcode,
+                            "SecurityCredential": Credetials,
+                            "CommandID": "TransactionStatusQuery",
+                            "TransactionID": req.body.check,
+                            "PartyA": Shortcode,
+                            "IdentifierType": "1",
+                            "ResultURL": "http://178.128.194.44:3000/payment/status",
+                            "QueueTimeOutURL": "http://178.128.194.44:3000/payment/timeout",
+                            "Remarks": "confirm ",
+                            "Occasion": "transaction "
+                        }
+                    },
+                    function (error, response, body) {
+                        if (error) {
+                            res.json(error);
+                        } else {
+                            res.json(body).status(200)
+                        }
+
+                    }
+                )
+            }
+
+
+        })
+    })
     router.post('/mpesa', (req, res) => {
         // let message = {
         //     "ResponseCode": "00000000",
@@ -180,7 +228,23 @@ module.exports = (router) => {
         console.log(prettyjson.render(req.body, options));
         // res.json({ success: true, message: message })
     })
+    router.post('/status', (req, res) => {
+        // let message = {
+        //     "ResponseCode": "00000000",
+        //     "ResponseDesc": "success"
+        // };
 
+        console.log(prettyjson.render(req.body, options));
+        // res.json({ success: true, message: message })
+    })
+    router.post('/timeout', (req, res) => {
+        // let message = {
+        //     "ResponseCode": "00000000",
+        //     "ResponseDesc": "success"
+        // };
 
+        console.log(prettyjson.render(req.body, options));
+        // res.json({ success: true, message: message })
+    })
     return router
 }   
