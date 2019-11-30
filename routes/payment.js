@@ -248,7 +248,7 @@ module.exports = (router) => {
                             method: 'POST',
                             url: url,
                             headers: {
-                                "Authorization":  Bearer.trim()
+                                "Authorization": tk.trim()
                             },
                             json: {
                                 //Fill in the request parameters with valid values
