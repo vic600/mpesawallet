@@ -176,7 +176,7 @@ module.exports = (router) => {
             if (!req.body.check) {
                 res.json({ success: false, message: 'provide a valid Trasaction id' })
             } else {
-                var Shortcode = 600437;
+                var Shortcode = 174379;
                 var initiator = 'testapi'
                 var Bearer = tk;
                 var Passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
@@ -194,8 +194,8 @@ module.exports = (router) => {
                             "Authorization": Bearer.trim()
                         },
                         json: {
-                            "Initiator": initiator,
-                            "SecurityCredential": 'ZB6ZLhJYidrr8C2Ml8C5yGxZ4ezLMU4CYFZGfWF2JWIlrtoLUWwJBSJHmGpC4p7WzEOWsCPu55tMX1JuHLH8Wx6k0alTwr62TcsXNOxmvEsEwtKO+efCdFKk6plesd4U16ZHmpcACekwOZsiiDF1SQoaxOcJdWaVd9Ow9OgQE22XEokqNcXstlE9TTf/L/yYN6ngnqOroT3AdjkNdehKPv1lON9EKaoh0issl+goB6HTMm6YT3vZowx7ZOgl32bAAuIvYUGYP1o4Y+0GY3oHJRo2Bg1frThgQ0p+Qw5OghMSIcsmdziVCMXzzu6KUQlSb2blGI61AgdTauaQ7cUIDw==',
+                            "Initiator": Shortcode,
+                            "SecurityCredential": Credetials,
                             "CommandID": "TransactionStatusQuery",
                             "TransactionID": req.body.check,
                             "PartyA": Shortcode,
