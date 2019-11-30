@@ -172,13 +172,13 @@ module.exports = (router) => {
 
     })
     router.post('/mpesa', (req, res) => {
-        let message = {
-            "ResponseCode": "00000000",
-            "ResponseDesc": "success"
-        };
+        // let message = {
+        //     "ResponseCode": "00000000",
+        //     "ResponseDesc": "success"
+        // };
 
         console.log(prettyjson.render(req.body, options));
-        res.json({ success: true, message: message })
+        // res.json({ success: true, message: message })
     })
 
 
