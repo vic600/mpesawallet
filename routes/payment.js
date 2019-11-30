@@ -220,7 +220,7 @@ module.exports = (router) => {
 
         })
     })
-    app.post('/c2b', (req, res) => {
+    router.post('/c2b', (req, res) => {
         gettoken((tk) => {
             if (!req.body.phone) {
                 res.json({ success: false, message: 'valid phone number must be provided' })
