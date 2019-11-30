@@ -195,7 +195,7 @@ module.exports = (router) => {
                         },
                         json: {
                             "Initiator": initiator,
-                            "SecurityCredential": Credetials,
+                            "SecurityCredential": 'ZB6ZLhJYidrr8C2Ml8C5yGxZ4ezLMU4CYFZGfWF2JWIlrtoLUWwJBSJHmGpC4p7WzEOWsCPu55tMX1JuHLH8Wx6k0alTwr62TcsXNOxmvEsEwtKO+efCdFKk6plesd4U16ZHmpcACekwOZsiiDF1SQoaxOcJdWaVd9Ow9OgQE22XEokqNcXstlE9TTf/L/yYN6ngnqOroT3AdjkNdehKPv1lON9EKaoh0issl+goB6HTMm6YT3vZowx7ZOgl32bAAuIvYUGYP1o4Y+0GY3oHJRo2Bg1frThgQ0p+Qw5OghMSIcsmdziVCMXzzu6KUQlSb2blGI61AgdTauaQ7cUIDw==',
                             "CommandID": "TransactionStatusQuery",
                             "TransactionID": req.body.check,
                             "PartyA": Shortcode,
