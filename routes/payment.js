@@ -194,7 +194,7 @@ module.exports = (router) => {
                             "Authorization": Bearer.trim()
                         },
                         json: {
-                            "Initiator": initiator,
+                            "Initiator": initiator.trim(),
                             "SecurityCredential": Credetials,
                             "CommandID": "TransactionStatusQuery",
                             "TransactionID": req.body.check,
