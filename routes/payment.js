@@ -229,7 +229,7 @@ module.exports = (router) => {
                 if (!req.body.amount) {
                     res.json({ success: false, message: 'valid amount  must be provided' })
                 } else {
-                    var Shortcode = 600777;
+                    var Shortcode = 600437;
                     var PartyB = 174379;
                     var Reference = "28";
                     var description = "RCGARDENS";
